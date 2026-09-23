@@ -14,7 +14,15 @@ public record OrderDto(
 
 public record CreateOrderItemRequest(Guid ProductId, int Quantity);
 
-public record CreateOrderRequest(IReadOnlyList<CreateOrderItemRequest> Items);
+public class CreateOrderRequest
+{
+    public CreateOrderRequest(List<CreateOrderItemRequest> items)
+    {
+        Items = items ?? throw new ArgumentNullException(nameof(items));
+    }
+
+    public List<CreateOrderItemRequest> Items { get; }
+}
 
 // ---------- Payment (simulated) ----------
 

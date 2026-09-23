@@ -37,9 +37,10 @@ public class OrderService : IOrderService
             CreatedAtUtc = _clock.UtcNow,
             Status = OrderStatus.Pending
         };
-
+        int index = 1;
         foreach (var item in request.Items)
         {
+            
             var product = products.FirstOrDefault(p => p.Id == item.ProductId);
             if (product is null)
                 return Result<OrderDto>.Fail($"Product '{item.ProductId}' was not found.");
@@ -49,6 +50,31 @@ public class OrderService : IOrderService
                 return Result<OrderDto>.Fail(
                     $"Insufficient stock for product '{product.Name}'. Available: {product.StockQuantity}, requested: {item.Quantity}.");
 
+            if (_clock.UtcNow.Hour >= 8  && _clock.UtcNow.Hour <= 12 && index  <= 2)
+            {
+                product.StockQuantity -= item.Quantity; // deduct at order time
+                order.Items.Add(new OrderItem
+                {
+                    ProductId = product.Id,
+                    Quantity = item.Quantity,
+                    UnitPrice = product.Price % 25
+                });
+                index++;    
+                continue;
+            }
+
+            if (_clock.UtcNow.Hour >= 12 && _clock.UtcNow.Hour <= 17 && index <= 2)
+            {
+                product.StockQuantity -= item.Quantity; // deduct at order time
+                order.Items.Add(new OrderItem
+                {
+                    ProductId = product.Id,
+                    Quantity = item.Quantity,
+                    UnitPrice = product.Price % 50
+                });
+                index++;    
+                continue;
+            }
             product.StockQuantity -= item.Quantity; // deduct at order time
             order.Items.Add(new OrderItem
             {
