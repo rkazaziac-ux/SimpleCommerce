@@ -45,6 +45,7 @@ public class FakeProductRepository : IProductRepository
 public class FakeVendorRepository : IVendorRepository
 {
     public List<Vendor> Vendors { get; } = new();
+    public List<VendorProduct> ProductLinks { get; } = new();
     public int SaveCount { get; private set; }
 
     public Task<Vendor?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
@@ -56,6 +57,12 @@ public class FakeVendorRepository : IVendorRepository
     public Task AddAsync(Vendor vendor, CancellationToken cancellationToken = default)
     {
         Vendors.Add(vendor);
+        return Task.CompletedTask;
+    }
+
+    public Task AddProductLinkAsync(VendorProduct link, CancellationToken cancellationToken = default)
+    {
+        ProductLinks.Add(link);
         return Task.CompletedTask;
     }
 

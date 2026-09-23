@@ -4,4 +4,7 @@ namespace SimpleCommerce.Application.Abstractions.Repositories;
 public interface IVendorRepository : IRepository<Vendor>
 {
     Task<List<Vendor>> GetAllAsync(CancellationToken cancellationToken = default);
+
+    /// <summary>Inserts a new vendor-product supply link as a NEW row (state = Added explicitly).</summary>
+    Task AddProductLinkAsync(VendorProduct link, CancellationToken cancellationToken = default);
 }
