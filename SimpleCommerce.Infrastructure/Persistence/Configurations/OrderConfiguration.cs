@@ -23,6 +23,13 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(o => o.CreatedAtUtc)
                .IsRequired();
 
+        // Customer is an AppUser (Users table). The Domain only knows a Guid (CustomerId);
+        // the referential integrity is wired here, without coupling the Domain to the user concept.
+        builder.HasOne<AppUser>()
+               .WithMany()
+               .HasForeignKey(o => o.CustomerId)
+               .OnDelete(DeleteBehavior.Restrict); // cannot delete a user who has orders
+
         builder.HasMany(o => o.Items)
                .WithOne(i => i.Order)
                .HasForeignKey(i => i.OrderId)
