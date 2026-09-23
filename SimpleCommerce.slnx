@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Core/">
+    <Project Path="SimpleCommerce.Application/SimpleCommerce.Application.csproj" />
+    <Project Path="SimpleCommerce.Domain/SimpleCommerce.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="SimpleCommerce.Infrastructure/SimpleCommerce.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Presentation/">
+    <Project Path="SimpleCommerce/SimpleCommerce.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="SimpleCommerce.UnitTests/SimpleCommerce.UnitTests.csproj" />
+  </Folder>
+</Solution>
