@@ -47,22 +47,21 @@ public static class DependencyInjection
         services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "SimpleCommerce API", Version = "v1" });
+            // ApiKey-in-header format is used deliberately: with Swashbuckle 10 +
+            // Microsoft.OpenApi v2, SecuritySchemeType.Http sets the "Authorized" state
+            // but does not actually attach the header to requests. ApiKey works reliably.
             options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 Name = "Authorization",
-                Type = SecuritySchemeType.Http,
+                Type = SecuritySchemeType.ApiKey,
                 Scheme = "bearer",
                 BearerFormat = "JWT",
                 In = ParameterLocation.Header,
-                Description = "Paste the JWT from /api/auth/login (without the 'Bearer ' prefix)."
+                Description = "Paste the JWT from /api/auth/login **including** the 'Bearer ' prefix."
             });
-            options.AddSecurityRequirement(_ => new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecuritySchemeReference("Bearer"),
-                    new List<string>()
-                }
-            });
+            // The requirement is injected by BearerSecurityDocumentFilter - see its remarks
+            // for why AddSecurityRequirement is not used here.
+            options.DocumentFilter<BearerSecurityDocumentFilter>();
         });
 
         return services;
