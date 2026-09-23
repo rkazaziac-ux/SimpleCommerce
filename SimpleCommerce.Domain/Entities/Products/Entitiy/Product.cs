@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Domain.Entities;
+namespace SimpleCommerce.Domain.Entities.Products.Entitiy;
 
 /// <summary>
 /// A sellable product with code, name, price and current stock.

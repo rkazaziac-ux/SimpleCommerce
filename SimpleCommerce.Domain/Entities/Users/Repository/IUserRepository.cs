@@ -1,4 +1,5 @@
-namespace SimpleCommerce.Application.Abstractions.Repositories;
+
+namespace SimpleCommerce.Domain.Entities.Users.Repository;
 
 /// <summary>
 /// Follows the same IRepository&lt;AppUser&gt; contract as the other aggregates.

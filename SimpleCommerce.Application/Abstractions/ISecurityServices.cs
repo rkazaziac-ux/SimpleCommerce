@@ -1,5 +1,3 @@
-using SimpleCommerce.Domain.Entities;
-
 namespace SimpleCommerce.Application.Abstractions;
 
 /// <summary>Hashes passwords (implemented with PBKDF2 in Infrastructure).</summary>

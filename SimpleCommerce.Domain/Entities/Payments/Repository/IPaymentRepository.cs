@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Application.Abstractions.Repositories;
+namespace SimpleCommerce.Domain.Entities.Payments.Repository;
 
 public interface IPaymentRepository : IRepository<Payment>
 {

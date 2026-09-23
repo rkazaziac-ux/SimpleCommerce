@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SimpleCommerce.Domain.Entities;
-
 namespace SimpleCommerce.Infrastructure.Persistence.Configurations;
 
 public class VendorProductConfiguration : IEntityTypeConfiguration<VendorProduct>

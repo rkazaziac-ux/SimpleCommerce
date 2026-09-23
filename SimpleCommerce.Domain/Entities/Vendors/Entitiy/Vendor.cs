@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Domain.Entities;
+namespace SimpleCommerce.Domain.Entities.Vendors.Entitiy;
 
 /// <summary>
 /// A vendor that supplies products, with contact information.

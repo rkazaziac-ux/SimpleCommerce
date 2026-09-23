@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Domain.Entities;
+namespace SimpleCommerce.Domain.Entities.Users.Entitiy;
 
 /// <summary>
 /// A system user for JWT authentication with a single role (Customer or Admin).

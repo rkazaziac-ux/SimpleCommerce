@@ -1,5 +1,3 @@
-using SimpleCommerce.Application.Services.Interfaces;
-
 namespace SimpleCommerce.Application.Services;
 
 public class VendorService : IVendorService

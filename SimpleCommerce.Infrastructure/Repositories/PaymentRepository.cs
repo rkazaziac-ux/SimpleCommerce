@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using SimpleCommerce.Application.Abstractions.Repositories;
-using SimpleCommerce.Domain.Entities;
 using SimpleCommerce.Domain.Enums;
 using SimpleCommerce.Infrastructure.Persistence;
 

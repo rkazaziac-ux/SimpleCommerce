@@ -2,8 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleCommerce.Application.Abstractions;
-using SimpleCommerce.Application.Abstractions.Repositories;
-using SimpleCommerce.Domain.Entities;
 using SimpleCommerce.Domain.Enums;
 using SimpleCommerce.Infrastructure.Persistence;
 using SimpleCommerce.Infrastructure.Repositories;
