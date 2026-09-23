@@ -33,6 +33,18 @@ public class VendorRepository : IVendorRepository
         await _context.Vendors.AddAsync(vendor, cancellationToken);
     }
 
+    /// <summary>
+    /// Inserts the supply link with an explicit Added state. Adding it through the
+    /// vendor's navigation made EF emit UPDATE for the new child row (the graph
+    /// tracker treated it as an existing entity), which failed with
+    /// DbUpdateConcurrencyException on a row that did not exist yet.
+    /// </summary>
+    public async Task AddProductLinkAsync(VendorProduct link, CancellationToken cancellationToken = default)
+    {
+        await _context.VendorProducts.AddAsync(link, cancellationToken);
+        _context.Entry(link).State = EntityState.Added;
+    }
+
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
         _context.SaveChangesAsync(cancellationToken);
 }

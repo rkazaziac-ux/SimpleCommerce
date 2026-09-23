@@ -63,12 +63,14 @@ public class VendorService : IVendorService
         if (vendor.VendorProducts.Any(vp => vp.ProductId == product.Id))
             return Result<VendorDto>.Fail($"Vendor '{vendor.Name}' already supplies product '{product.Name}'.");
 
-        vendor.VendorProducts.Add(new VendorProduct
+        // Add the link through the repository (explicit Added state) so EF inserts it
+        // instead of walking the vendor graph and issuing an UPDATE for the new row.
+        await _vendorRepository.AddProductLinkAsync(new VendorProduct
         {
             VendorId = vendor.Id,
             ProductId = product.Id,
             SupplyPrice = request.SupplyPrice
-        });
+        }, cancellationToken);
 
         await _vendorRepository.SaveChangesAsync(cancellationToken);
         return Result<VendorDto>.Ok(ToDto(vendor));
