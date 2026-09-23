@@ -1,4 +1,3 @@
-using SimpleCommerce.Application.Services.Interfaces;
 
 namespace SimpleCommerce.Application.Services;
 

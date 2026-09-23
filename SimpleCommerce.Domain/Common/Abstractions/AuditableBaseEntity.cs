@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Domain.Common;
+namespace SimpleCommerce.Domain.Common.Abstractions;
 
 /// <summary>
 /// Base class for entities that carry a creation timestamp (e.g. Order, Payment).

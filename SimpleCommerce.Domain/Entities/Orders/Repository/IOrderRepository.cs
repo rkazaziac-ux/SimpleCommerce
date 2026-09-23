@@ -1,4 +1,5 @@
-namespace SimpleCommerce.Application.Abstractions.Repositories;
+
+namespace SimpleCommerce.Domain.Entities.Orders.Repository;
 
 /// <remarks>GetByIdAsync loads the order together with its items and each item's product.</remarks>
 public interface IOrderRepository : IRepository<Order>

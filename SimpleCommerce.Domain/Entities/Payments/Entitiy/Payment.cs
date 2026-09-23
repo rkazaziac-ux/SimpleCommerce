@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Domain.Entities;
+namespace SimpleCommerce.Domain.Entities.Payments.Entitiy;
 
 /// <summary>
 /// Simulated payment record for an order. No real payment gateway is connected.

@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using SimpleCommerce.Domain.Entities;
 
 namespace SimpleCommerce.Infrastructure.Persistence;
 

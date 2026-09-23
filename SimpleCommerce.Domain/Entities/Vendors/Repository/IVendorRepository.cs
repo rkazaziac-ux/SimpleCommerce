@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Application.Abstractions.Repositories;
+namespace SimpleCommerce.Domain.Entities.Vendors.Repository;
 
 /// <remarks>GetByIdAsync loads the vendor together with its VendorProducts and each product's name.</remarks>
 public interface IVendorRepository : IRepository<Vendor>

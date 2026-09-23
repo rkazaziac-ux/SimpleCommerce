@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Domain.Entities;
+namespace SimpleCommerce.Domain.Entities.Orders.Entitiy;
 
 /// <summary>
 /// A customer order consisting of one or more order items.

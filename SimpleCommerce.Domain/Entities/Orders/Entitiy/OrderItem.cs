@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Domain.Entities;
+namespace SimpleCommerce.Domain.Entities.Orders.Entitiy;
 
 /// <summary>
 /// One line of an order: which product, how many units, and the unit price

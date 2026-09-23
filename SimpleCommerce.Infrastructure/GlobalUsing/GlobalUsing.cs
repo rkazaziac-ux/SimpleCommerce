@@ -1,8 +1,4 @@
-global using SimpleCommerce.Application.Abstractions;
-global using SimpleCommerce.Application.DTOs;
-global using SimpleCommerce.Application.Services;
-global using SimpleCommerce.Domain.Enums;
-global using SimpleCommerce.Domain.Entities.Products.Repository;
+﻿global using SimpleCommerce.Domain.Entities.Products.Repository;
 global using SimpleCommerce.Domain.Entities.Vendors.Repository;
 global using SimpleCommerce.Domain.Entities.Payments.Repository;
 global using SimpleCommerce.Domain.Entities.Users.Repository;
@@ -12,3 +8,5 @@ global using SimpleCommerce.Domain.Entities.Vendors.Entitiy;
 global using SimpleCommerce.Domain.Entities.Payments.Entitiy;
 global using SimpleCommerce.Domain.Entities.Users.Entitiy;
 global using SimpleCommerce.Domain.Entities.Orders.Entitiy;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;

@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Domain.Entities;
+namespace SimpleCommerce.Domain.Entities.Vendors.Entitiy;
 
 /// <summary>
 /// Join entity for the many-to-many Vendor ↔ Product relationship.

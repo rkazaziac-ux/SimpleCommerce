@@ -1,4 +1,4 @@
-namespace SimpleCommerce.Application.Abstractions.Repositories;
+namespace SimpleCommerce.Domain.Entities.Products.Repository;
 
 public interface IProductRepository : IRepository<Product>
 {

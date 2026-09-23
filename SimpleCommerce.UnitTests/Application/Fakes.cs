@@ -1,7 +1,3 @@
-using SimpleCommerce.Application.Abstractions;
-using SimpleCommerce.Domain.Entities;
-using SimpleCommerce.Domain.Enums;
-
 namespace SimpleCommerce.UnitTests.Application;
 
 // In-memory fakes replacing the Infrastructure repositories/services, so the
