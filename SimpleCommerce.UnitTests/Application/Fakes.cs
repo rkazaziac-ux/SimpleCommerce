@@ -4,9 +4,8 @@ using SimpleCommerce.Domain.Enums;
 
 namespace SimpleCommerce.UnitTests.Application;
 
-// In-memory fakes replacing the Infrastructure repositories, so the
-// Application services can be tested without a database.
-// Each fake exposes SaveCount so tests can assert when a save happened.
+// In-memory fakes replacing the Infrastructure repositories/services, so the
+// Application services can be tested without a database or real crypto/JWT.
 
 public class FakeClock : IClock
 {
@@ -113,4 +112,47 @@ public class FakePaymentRepository : IPaymentRepository
         SaveCount++;
         return Task.FromResult(1);
     }
+}
+
+public class FakeUserRepository : IUserRepository
+{
+    public List<AppUser> Users { get; } = new();
+    public int SaveCount { get; private set; }
+
+    public Task<AppUser?> GetByEmailAsync(string email, CancellationToken cancellationToken = default) =>
+        Task.FromResult(Users.FirstOrDefault(u => u.Email == email.ToLowerInvariant()));
+
+    public Task<AppUser?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
+        Task.FromResult(Users.FirstOrDefault(u => u.Id == id));
+
+    public Task<bool> EmailExistsAsync(string email, CancellationToken cancellationToken = default) =>
+        Task.FromResult(Users.Any(u => u.Email == email.ToLowerInvariant()));
+
+    public Task AddAsync(AppUser user, CancellationToken cancellationToken = default)
+    {
+        Users.Add(user);
+        return Task.CompletedTask;
+    }
+
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        SaveCount++;
+        return Task.FromResult(1);
+    }
+}
+
+public class FakePasswordHasher : IPasswordHasher
+{
+    public string HashOf(string password) => $"hash::{password}";
+
+    public (string Hash, string Salt) Hash(string password) => (HashOf(password), "salt");
+
+    public bool Verify(string password, string hash, string salt) => hash == HashOf(password);
+}
+
+public class FakeTokenService : ITokenService
+{
+    public string TokenFor(AppUser user) => $"jwt::{user.Email}::{user.Role}";
+
+    public string CreateToken(AppUser user) => TokenFor(user);
 }
