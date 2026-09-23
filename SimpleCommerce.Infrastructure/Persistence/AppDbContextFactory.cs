@@ -14,7 +14,7 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {
         var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
         optionsBuilder.UseSqlServer(
-            "Server=epdsql;Database=SimpleCommerceDb;User Id=sa;Password=***REPLACE***;TrustServerCertificate=True;MultipleActiveResultSets=true");
+            "Server=epdsql;Database=SimpleCommerceDb;User Id=sa;Password=payvandd;TrustServerCertificate=True;MultipleActiveResultSets=true");
 
         return new AppDbContext(optionsBuilder.Options);
     }

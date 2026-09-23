@@ -45,9 +45,9 @@ public static class DependencyInjection
     }
 
     /// <summary>
-    /// Optional (default: on): creates the database if missing and seeds one admin
-    /// account (admin@simplecommerce.local / Admin@12345) so the API is testable out
-    /// of the box. Inactive via configuration "SeedAdmin": false.
+    /// Optional (default: on): applies pending migrations (creating the database if
+    /// missing) and seeds one admin account (admin@simplecommerce.local / Admin@12345)
+    /// so the API is testable out of the box. Inactive via configuration "SeedAdmin": false.
     /// </summary>
     public static async Task SeedAdminAsync(this IServiceProvider serviceProvider, IConfiguration configuration)
     {
@@ -58,7 +58,8 @@ public static class DependencyInjection
         using var scope = serviceProvider.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-        await context.Database.EnsureCreatedAsync();
+        // Creates the DB and applies any pending migration (idempotent).
+        await context.Database.MigrateAsync();
 
         if (!await context.Users.AnyAsync())
         {
